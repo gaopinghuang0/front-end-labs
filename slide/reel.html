@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8"/>
+	<title>Reel</title>
+
+	<style>
+	body {
+		padding-left: 300px;
+	}
+	#left {
+		float: left;
+		width: 120px;
+		height: 632px;
+		background: url(reel.jpg);
+	}
+	#right {
+		float: left;
+		width: 120px;
+		height: 632px;
+		background: url(reel.jpg) 100% 50%;
+	}
+	</style>
+</head>
+<body>
+	<div id="left"></div>
+	<div id="right"></div>
+
+	<script>
+	var timer,
+		wid = 120;
+
+	function moveRight() {
+		var right = document.getElementById('right');
+		wid += 5;
+		right.style.width = wid + 'px';
+
+		timer = setTimeout("moveRight()", 50);
+		if (wid > 575) clearTimeout(timer);
+	}
+	// moveRight();
+
+	function moveLeft() {
+		var left = document.querySelector('#left');
+		wid += 5;
+		left.style.width = wid + 'px';
+
+		timer = setTimeout('moveLeft()', 50);
+		if (wid > 575) clearTimeout(timer);
+	}
+	// moveLeft();
+
+	function moveLeftRight() {
+		var left = document.querySelector('#left'),
+			right = document.querySelector('#right');
+
+		wid += 5;
+		left.style.width = wid + 'px';
+		right.style.width = wid + 'px';
+
+		timer = setTimeout('moveLeftRight()', 50);
+		if (wid > (700-240)/2) clearTimeout(timer);
+	}
+	moveLeftRight();
+
+	</script>
+</body>
+</html>
