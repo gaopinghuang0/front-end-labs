@@ -7,7 +7,6 @@
 
 		aPrefix.forEach(function(elem, index) {
 			props = elem + 'Transition';
-			console.log(temp.style, props)
 			if (temp.style[props] !== undefined) {
 				return '-' + elem.toLowerCase() + '-';
 			}
@@ -62,7 +61,7 @@
 			},
 			next: function() {
 				var that = this;
-				if (that.index < that.pagesCount) {
+				if (that.index < that.pagesCount-1) {
 					that.index++;
 					console.log('in next', that.index)
 				} else if (that.settings.loop) {
@@ -103,7 +102,7 @@
 			_initEvent: function() {
 				var that = this;
 
-				console.log(that.element.attr('class'), that.selectors.page + ' li')
+				console.log(that.element.attr('id'), that.selectors.page + ' li')
 
 				that.element.on('click', that.selectors.page + ' li', function() {
 					console.log('in click')
@@ -118,10 +117,10 @@
 
 						// up
 						if (delta > 0 && (that.index && !that.settings.loop || that.settings.loop)) {
-							console.log('in up')
+							console.log('in up, delta: ', delta)
 							that.prev();
 						} else if (delta < 0 && (that.index < (that.pagesCount -1) && !that.settings.loop || that.settings.loop)) {
-							console.log('in down')
+							console.log('in down, delta: ', delta)
 							that.next();
 						}	
 					}
@@ -157,8 +156,6 @@
 					}
 				})
 
-				console.log('here')
-
 			},
 			_scrollPage: function() {
 				var that = this,
@@ -172,10 +169,16 @@
 
 				if (_prefix) {  // browser support transition
 					that.sections.css(_prefix+'transition', "all " + that.settings.duration+'ms '+that.settings.easing);
-					var translate = that.direction ? 'translate(Y-'+dest.top+'px)' : 'translateX(-'+dest.left+'px)';
+					var translate = that.direction ? 'translateY(-'+dest.top+'px)' : 'translateX(-'+dest.left+'px)';
+					console.log(translate)
 					that.sections.css(_prefix+'transform', translate);
+					that.sections.on("webkitTransitionEnd msTransitionend mozTransitionend transitionend",function() {
+						that.canScroll = true;
+					});
 				} else {
 					var animateCss = that.direction ? {top: -dest.top} : {left: -dest.left};
+					
+					console.log(that.sections)
 					that.sections.animate(animateCss, that.settings.duration, function() {
 						that.canScroll = true;
 						if (that.settings.callback && $.type(me.settings.callback) === 'function') {
@@ -221,8 +224,8 @@
 		callback: ''
 	}
 
-	$(function() {
-		$('[data-PageSwitch]').PageSwitch();
-	})
+	// $(function() {
+	// 	$('[data-PageSwitch]').PageSwitch();
+	// })
 
 })(jQuery);

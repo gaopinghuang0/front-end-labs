@@ -16,11 +16,13 @@
 		.sections,
 		.section {
 			height: 100%;
+			position: relative;
 			background-size: cover;
 			background-position: 50% 50%;
+			color: #fff;
 		}
 		#section0 {
-			background-image: url(bg0.jpg);
+			background-image: url(images/1.jpg);
 		}
 		#section1 {
 			background-image: url(bg1.jpg);
@@ -32,72 +34,56 @@
 			background-image: url(bg3.png);
 		}
 
-/*	h1,body,html{
-		padding: 0;
-		margin: 0;
-	}
-	body{
-		font-family: Arial,"Microsoft YaHei","Hiragino Sans GB",sans-serif;
-	}*/
-/*	html,body{
-		height: 100%;
-		overflow: hidden;
-	}
+		.pages {
+			position: fixed;
+			right: 10px;
+			top: 50%;
+			list-style: none;
+		}
 
-	#container,.section{
-		height: 100%;
-	}
-	#section0,
-	#section1,
-	#section2,
-	#section3{
-		background-color: #000;
-		background-size: cover;
-		background-position: 50% 50%;
-	}
-	#section0{
-		background-image: url(images/1.jpg);
-	}
-	#section1{
-		color: #fff;
-		text-shadow:1px 1px 1px #333;
-		background-image: url(images/2.jpg);
-	}
-	#section2{
-		background-image: url(images/3.jpg);
-		color: #fff;
-		text-shadow:1px 1px 1px #666;
-	}
-	#section3{
-		color: #008283;
-		background-image: url(images/4.jpg);
-		text-shadow:1px 1px 1px #fff;
-	}*/
+		.pages li {
+			cursor: pointer;
+			width: 8px;
+			height: 8px;
+			border-radius: 50%;
+			background: #fff;
+			margin: 0 0 10px 5px;
+		}
+
+		.pages li.active {
+			height: 14px;
+			width: 14px;
+			border: 2px solid #FFFE00;
+			background: none;
+			margin-left: 0px;
+		}
+
 </style>
 </head>
 <body>
 	<div id="container">
-		<div class="sections" data-PageSwitch>
+		<div class="sections">
 			<div class="section" id="section0">
 				<h3>This is the page</h3>
-			<!-- <div class="intro">
-				<h1 class="title">switchPage</h1>
-				<p>Create Beautiful Fullscreen Scrolling Websites</p>
-			</div> -->
-		</div>
-		<div class="section" id="section1">
-			<h3>This is the page</h3>
-		</div>
-		<div class="section" id="section2">
-			<h3>This is the page</h3>
-		</div>
-		<div class="section" id="section3">
-			<h3>This is the page</h3>
+			</div>
+			<div class="section" id="section1">
+				<h3>This is the page</h3>
+			</div>
+			<div class="section" id="section2">
+				<h3>This is the page</h3>
+			</div>
+			<div class="section" id="section3">
+				<h3>This is the page</h3>
+			</div>
 		</div>
 	</div>
-</div>
 
-<script src="jquery-1.11.2.min.js"></script>
-<script src="pageswitch.js"></script>
+	<script src="jquery-1.11.2.min.js"></script>
+	<script src="pageswitch.js"></script>
+	<script>
+	$(function() {
+		$('#container').PageSwitch();
+	});
+	</script>
 </body>
 </html>
