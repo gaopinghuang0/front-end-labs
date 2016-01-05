@@ -1,7 +1,8 @@
 .main {
-	width: 600px;
+	width: 300px;
 	height: auto;
 	margin: 50px auto;
+	text-align: center;
 }
 
 @keyframes spriteSpin {

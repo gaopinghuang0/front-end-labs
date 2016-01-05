@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Full screen</title>
+	<style>
+		* {
+			padding: 0;
+			margin: 0;
+		}
+		h1 {
+			font-size: 6em;
+			font-weight: normal;
+		}
+		p {
+			font-size: 2em;
+			margin: .5em 0 2em;
+		}
+		html,body {
+			height: 100%;
+			overflow: hidden;
+		}
+		body {
+			font-family: Arial,"Microsoft YaHei","Hiragino Sans GB",sans-serif;
+		}
+		#container,
+		.sections,
+		.section {
+			height: 100%;
+			position: relative;
+			background-size: cover;
+			background-position: 50% 50%;
+			color: #fff;
+		}
+		#section0 {
+			background-image: url(images/1.jpg);
+			text-shadow: 1px 1px 1px #333;
+		}
+		#section1 {
+			background-image: url(images/2.jpg);
+			text-shadow: 1px 1px 1px #333;
+		}
+		#section2 {
+			background-image: url(images/3.jpg);
+			text-shadow: 1px 1px 1px #666;
+		}
+		#section3 {
+			background-image: url(images/4.jpg);
+			color: #008283;
+			text-shadow: 1px 1px 1px #fff;
+		}
+		#section0 p {
+			color: #f1ff00;
+		}
+		#section3 p {
+			color: #00a3af;
+		}
+		.intro {
+			position: absolute;
+			top: 50%;
+			width: 100%;
+			-webkit-transform: translateY(-50%);
+			transform: translateY(-50%);
+			text-align: center;
+		}
+
+		.pages {
+			position: fixed;
+			right: 10px;
+			top: 50%;
+			list-style: none;
+		}
+
+		.pages li {
+			cursor: pointer;
+			width: 8px;
+			height: 8px;
+			border-radius: 50%;
+			background: #fff;
+			margin: 0 0 10px 5px;
+		}
+
+		.pages li.active {
+			height: 14px;
+			width: 14px;
+			border: 2px solid #FFFE00;
+			background: none;
+			margin-left: 0px;
+		}
+
+		#section0 .title {
+			-webkit-transform: translateX(-100%);
+			transform: translateX(-100%);
+			-webkit-animation: sectitle0 1s ease-in-out 100ms forwards;
+			animation: sectitle0 1s ease-in-out 100ms forwards;
+		}
+
+		#section0 p {
+			-webkit-transform: translateX(100%);
+			transform: translateX(100%);
+			-webkit-animation: sec0 1s ease-in-out 100ms forwards;
+			animation: sec0 1s ease-in-out 100ms forwards;
+		}
+
+		@-webkit-keyframes sectitle0 {
+			0% {
+				-webkit-transform: translateX(-100%);
+				transform: translateX(-100%);
+			}
+			100% {
+				-webkit-transform: translateX(0);
+				transform: translateX(0);
+			}
+		}
+
+		@keyframes sectitle0 {
+			0% {
+				-webkit-transform: translateX(-100%);
+				transform: translateX(-100%);
+			}
+			100% {
+				-webkit-transform: translateX(0);
+				transform: translateX(0);
+			}
+		}
+
+		@-webkit-keyframes sec0 {
+			0% {
+				-webkit-transform: translateX(100%);
+				transform: translateX(100%);
+			}
+			100% {
+				-webkit-transform: translateX(0);
+				transform: translateX(0);
+			}
+		}
+
+		@keyframes sec0 {
+			0% {
+				-webkit-transform: translateX(100%);
+				transform: translateX(100%);
+			}
+			100% {
+				-webkit-transform: translateX(0);
+				transform: translateX(0);
+			}
+		}
+
+	</style>
+</head>
+<body>
+	<div id="container">
+		<div class="sections">
+			<div class="section" id="section0">
+				<div class="intro">
+					<h1 class="title">switchPage</h1>
+					<p>Create Beautiful Fullscreen Scrolling Websites</p>
+				</div>
+			</div>
+			<div class="section" id="section1">
+				<div class="intro">
+					<h1 class="title">Example</h1>
+					<p>HTML markup example to define 4 sections</p>
+					<img src="images/example.png" alt="">
+				</div>
+
+			</div>
+			<div class="section" id="section2">
+				<div class="intro">
+					<h1 class="title">Example</h1>
+					<p>The plug-in configuration parameters</p>
+					<img src="images/example2.png" alt="">
+				</div>
+
+			</div>
+			<div class="section" id="section3">
+				<div class="intro">
+					<h1 class="title">The End</h1>
+					<p>Everything will be okay in the end. If it's not okay, it's not the end.</p>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+	<script src="jquery-1.11.2.min.js"></script>
+	<script src="pageswitch.js"></script>
+	<script>
+		$(function() {
+			$('#container').PageSwitch({
+				loop: true,
+				direction: 'vertical'
+			});
+		});
+	</script>
+</body>
+</html>
