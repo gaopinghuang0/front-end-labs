@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>ui-spinner demo</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+	<link rel="stylesheet" href="./spinner.css">
+</head>
+<body>
+<div class="main" ng-app="myApp">
+	<h2>Learn from zhuanlan.zhihu.com</h2>
+	<div ui-spinner></div>
+	<div class="small" ui-spinner></div>
+</div>
+
+<script>
+	(function() {
+		angular.module('myApp', []);
+
+		angular.module('myApp')
+		.factory("support", function() {
+            var a = document.body.style;
+            return {
+                cssAnimation: ["animation", "webkitAnimation"].some(function(b) {
+                    return b in a
+                }),
+                backgroundSize: "backgroundSize" in a
+            }
+        })
+
+		angular.module('myApp')
+		.directive('uiSpinner', ['support', function(support) {
+			return {
+				restrict: 'A',
+				replace: true,
+				template: '<div class="ui-spinner"></div>',
+				link: function(scope, elem, attrs) {
+					console.log('haha')
+					var _class;
+					_class = attrs.uiSpinner || support.cssAnimation && 'use-css' || 'use-gif';
+					elem.addClass(_class);
+				}
+			}
+		}])
+	})();
+</script>
+</body>
+</html>
